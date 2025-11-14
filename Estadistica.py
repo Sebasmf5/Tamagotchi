@@ -37,11 +37,11 @@ class Estadistica:
         self.update_days_text()
 
     def update_days_text(self):
-        self.days_text = self.pixel_font.render(f"Days: {self.days_count}", True, (255, 255, 255))
+        self.days_text = self.pixel_font.render(f"Days: {self.days_count}", True, (150, 75, 0))
         self.days_text_rect = self.days_text.get_rect(center=(400, 250))
 
     def update_money_text(self):
-        self.gato_text = self.pixel_font.render(f"$ : {self.text_lg}", True, (255, 255, 255))
+        self.gato_text = self.pixel_font.render(f"$ : {self.text_lg}", True, (150, 75, 0))
         self.gato_text_rect = self.gato_text.get_rect(center=(400, 300))
 
     def set_days_count(self, days):

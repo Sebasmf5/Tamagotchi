@@ -56,7 +56,6 @@ class MiniGame:
                 self.reset_mouse()
                 appear_timer = 0
                 score -= 1  # penalización si no atrapas
-
             # Animación ratón
             frame_index = (self.mouse_anim_count // self.frame_delay) % self.num_frames
             self.screen.blit(self.mouse_frames[frame_index], (self.mouse_rect.x, self.mouse_rect.y))
@@ -72,7 +71,7 @@ class MiniGame:
 
             # Mostrar puntaje y monedas
             score_text = self.font.render(f"Puntaje: {score}", True, (255, 255, 255))
-            coins_text = self.font.render(f"Monedas: {self.action.get('coins', 0)}", True, (255, 255, 0))
+            coins_text = self.font.render(f"Monedas: {self.action.get('logiki', 0)}", True, (255, 255, 0))
             self.screen.blit(score_text, (50, 50))
             self.screen.blit(coins_text, (50, 80))
 

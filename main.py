@@ -150,10 +150,8 @@ def game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 end_game = True
-                pygame.quit()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 end_game = True
-                pygame.quit()
             if event.type == days_event:
                 night_timer = 0
                 is_sleep = True
@@ -258,8 +256,10 @@ def menu():
                         UIManager.help_menu.clicked_help = False
         if pygame.mouse.get_focused():
             screen.blit(cursor, (pos_x, pos_y))
+
         clock.tick(fps)
         pygame.display.update()
 
 if __name__ == '__main__':
     menu()
+    pygame.quit()
