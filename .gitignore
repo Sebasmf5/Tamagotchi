@@ -1,0 +1,10 @@
+# Ignorar carpetas de configuración y entornos virtuales
+.idea/
+.venv/
+__pycache__/
+# Ignorar archivos temporales de Python
+*.pyc
+*.pyo
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
