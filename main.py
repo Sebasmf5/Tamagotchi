@@ -1,6 +1,9 @@
 """
-Angela Patricia Aponte 230231005
-José Sebastian Arenas  2302310
+Angela Patricia Aponte
+José Sebastian Arenas
+Sebastian Morales Flórez
+Nicole Daniela Londoño
+Andrés Felipe Saavedra
 """
 
 
@@ -135,10 +138,16 @@ def game_over():
         return True
     return False
 
+button_sound = pygame.mixer.Sound(abs_path('sounds/button.wav'))
+button_sound.set_volume(0.05)
+
 def game():
     global is_sleep, cant_clear, days_count, text_timer, cant_help, end_game, night_timer, start_time
     global event_message, event_msg_timer, mini_game
 
+    pygame.mixer.music.load(abs_path('sounds/game.mp3'))
+    pygame.mixer.music.set_volume(0.3)
+    pygame.mixer.music.play(loops=-1)
     start_time = time.time()
     while not end_game:
         screen.blit(background, (0, 0))
@@ -158,24 +167,36 @@ def game():
             if not is_sleep:
                 if UIManager.btn_statistic.is_clicked(event):
                     UIManager.estadistica.clicked_statistics = True
+                    button_sound.play()
                 if UIManager.btn_satiety.is_clicked(event):
                     UIManager.can_feed()
                 UIManager.food.pressed(pos_x, pos_y, event)
                 if action['logiki'] >= 0:
                     UIManager.food.pressed(pos_x, pos_y, event)
+                    button_sound.play()
                 if UIManager.btn_toilet.is_clicked(event):
                     clearAfter()
                 if UIManager.btn_play.is_clicked(event):
                     mini_game = MiniGame.MiniGame(screen, clock, pixel_font, pygame.image.load(
                         abs_path('images/sprites/raton/suelo.png')).convert_alpha(), action, TamagotchiSprite)
+                    button_sound.play()
+                    pygame.mixer.music.unload()
+                    pygame.mixer.music.load(abs_path('sounds/game_2.ogg'))
+                    pygame.mixer.music.set_volume(0.7)
+                    pygame.mixer.music.play()
                     mini_game.run()
+                    pygame.mixer.music.unload()
+                    pygame.mixer.music.load(abs_path('sounds/game.mp3'))
+                    pygame.mixer.music.play(loops=-1)
                     UIManager.estadistica.set_money_count(action['logiki'])
                 if UIManager.btn_health.is_clicked(event):
                     medicine()
             if UIManager.estadistica.exit_rect.collidepoint(pos_x, pos_y):
                 UIManager.estadistica.clicked_statistics = False
+                button_sound.play()
             if UIManager.food.exit_rect.collidepoint((pos_x, pos_y)) and event.type == pygame.MOUSEBUTTONDOWN:
                 UIManager.cant_feed()
+                button_sound.play()
 
         UIManager.handle_hover((pos_x, pos_y))
 
@@ -226,6 +247,8 @@ def game():
 
 def menu():
     global end_menu, start_time, menu_anim_count
+    pygame.mixer.music.load(abs_path('sounds/musica.mp3'))
+    pygame.mixer.music.play(loops=-1)
     while not end_menu:
         screen.blit(background_menu, (0, 0))
         UIManager.draw_main_menu()
